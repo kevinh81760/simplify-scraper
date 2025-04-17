@@ -56,3 +56,5 @@ coverage/
 *.py,cover
 .hypothesis/
 .pytest_cache/
+
+server/config.py
