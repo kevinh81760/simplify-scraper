@@ -1,4 +1,4 @@
-import PhoneInput from "../components/PhoneInput";
+import PhoneField from "../components/PhoneField";
 import SubmitInput from "../components/SubmitInput";
 
 const Home = () => {
@@ -14,8 +14,12 @@ const Home = () => {
           <p>we'll text you when new roles go</p>
           <p>live.</p>
         </div>
-        <PhoneInput />
-        <SubmitInput />
+        <div>
+            <PhoneField />
+            <div className="-ml-[125px] inline-block">
+                <SubmitInput />
+            </div>
+        </div>
       </div>
     </div>
   );
