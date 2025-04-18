@@ -14,7 +14,7 @@ const Home = () => {
           <p>we'll text you when new roles go</p>
           <p>live.</p>
         </div>
-        <div>
+        <div className="mr-1">
             <PhoneField />
             <div className="-ml-[125px] inline-block">
                 <SubmitInput />
