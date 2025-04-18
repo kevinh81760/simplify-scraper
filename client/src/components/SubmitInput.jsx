@@ -4,7 +4,7 @@ const SubmitInput = () => {
     return (
         <button
             type="submit"
-            className="bg-black text-white text-base rounded-2xl w-30 h-11"
+            className="bg-black text-white text-base rounded-2xl w-30 h-11 hover:bg-gray-900"
         >
             Notify Me
         </button>
