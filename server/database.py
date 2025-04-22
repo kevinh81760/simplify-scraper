@@ -14,6 +14,8 @@ def load_seen_jobs():
         except json.JSONDecodeError:
             seen_jobs = []
     
+    return seen_jobs
+    
 def save_seen_jobs(job):
     # loads current list of jobs
     seen_jobs = load_seen_jobs()

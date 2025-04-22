@@ -4,11 +4,11 @@ from config import GITHUB_REPO_URL, USER_AGENT
 
 def fetch_job_listings():
     headers = {
-        USER_AGENT
+        "User-Agent": USER_AGENT
     }
 
     # holds the pages html element
-    response = requests.get(GITHUB_REPO_URL, USER_AGENT)
+    response = requests.get(GITHUB_REPO_URL, headers=headers)
     response.raise_for_status()
 
     # parses raw html to a navigational tree structure
