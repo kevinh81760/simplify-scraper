@@ -10,4 +10,11 @@ def send_notification(message):
     }
 
     try:
+        response = requests.post(url, json=payload)
+        response.raise_for_status()
+        print(f"Notification sent: {message}")
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to send notification: {e}")
+
         
+send_notification("Hello! This is a test 🔥")
