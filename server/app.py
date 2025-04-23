@@ -17,9 +17,9 @@ def main():
         for job in new_jobs:
             key = f"{job['company']} - {job['role']}"
             if key not in seen_keys:
-                send_notification(f"New job posted: {key}")
+                #send_notification(f"New job posted: {key}")
+                print(f"Saving new job: {key}")
                 save_seen_jobs(job)
-
         time.sleep(SCRAPE_INTERVAL)
 
 if __name__ == "__main__":
