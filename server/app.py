@@ -1,31 +1,26 @@
+import time
 from scraper import fetch_job_listings
 from database import load_seen_jobs, save_seen_jobs
 from notifier import send_notification
 from config import SCRAPE_INTERVAL
-import time
 
 def main():
     while True:
-        print("Checking for new jobs")
-        # fetches old and new jobs
+        print("Checking for new jobs...")
+
         new_jobs = fetch_job_listings()
         old_jobs = load_seen_jobs()
 
-        # checks if there are any new jobs 
-        for job in new_jobs:
-            if job not in old_jobs:
-                # sends an sms message if there is 
-                send_notification(f"New job posted: {job['title']}")
+        # Create set of identifiers based on company + role
+        seen_keys = set(f"{job['company']} - {job['role']}" for job in old_jobs)
 
-                # adds new jobs to seen jobs
+        for job in new_jobs:
+            key = f"{job['company']} - {job['role']}"
+            if key not in seen_keys:
+                send_notification(f"New job posted: {key}")
                 save_seen_jobs(job)
 
-        # sleeps for 10 mins
         time.sleep(SCRAPE_INTERVAL)
 
 if __name__ == "__main__":
     main()
-
-        
-
-            
