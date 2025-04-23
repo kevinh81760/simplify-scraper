@@ -3,7 +3,7 @@ from config import TWILIO_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER
 
 client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
 
-def send_sms(to_number, message):
+def send_notification(to_number, message):
     try:
         client.messages.create(
             body=message,
