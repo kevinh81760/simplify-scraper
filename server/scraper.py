@@ -40,6 +40,9 @@ def fetch_job_listings():
         else:
             application_link = None
 
+        if company == "↳":
+            continue
+
         job = {
             "company": company,
             "role": role,
