@@ -3,7 +3,26 @@ from scraper import fetch_job_listings
 from database import load_seen_jobs, save_seen_jobs
 from notifier import send_notification
 from config import SCRAPE_INTERVAL
+from flask import Flask, jsonify, request
+from recipients.recipients_util import save_phone_number
+from flask_cors import CORS
 
+app = Flask(__name__)
+CORS(app)
+
+# API route to receive a phone number from the frontend and save it
+@app.route("/api/phone", methods=["POST"])
+def add_phone_number():
+    data = request.get_json()
+    number = data.get("number")
+
+    if not number:
+        return jsonify({"error": "Phone number is required"}), 400
+    
+    save_phone_number(number)
+    return jsonify({"message": "Phone number saved successfully"}), 200
+
+# Main scraping loop: runs forever, checking for new jobs periodically
 def main():
     while True:
         print("Checking for new jobs...")
