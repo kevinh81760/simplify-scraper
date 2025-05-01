@@ -10,7 +10,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# API route to receive a phone number from the frontend and save it
+# api route to receive a phone number from the frontend and save it
 @app.route("/api/phone", methods=["POST"])
 def add_phone_number():
     data = request.get_json()
@@ -22,7 +22,7 @@ def add_phone_number():
     save_phone_number(number)
     return jsonify({"message": "Phone number saved successfully"}), 200
 
-# Main scraping loop: runs forever, checking for new jobs periodically
+# main scraping loop: runs forever, checking for new jobs periodically
 def main():
     while True:
         print("Checking for new jobs...")
@@ -30,13 +30,13 @@ def main():
         new_jobs = fetch_job_listings()
         old_jobs = load_seen_jobs()
 
-        # Create set of identifiers based on company + role
+        # create set of identifiers based on company + role
         seen_keys = set(f"{job['company']} - {job['role']}" for job in old_jobs)
 
         for job in new_jobs:
             key = f"{job['company']} - {job['role']}"
             if key not in seen_keys:
-                #send_notification(f"New job posted: {key}")
+                # send_notification(f"New job posted: {key}")
                 print(f"Saving new job: {key}")
                 save_seen_jobs(job)
         time.sleep(SCRAPE_INTERVAL)
