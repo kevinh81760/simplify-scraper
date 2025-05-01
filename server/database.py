@@ -2,7 +2,7 @@ import json
 import os 
 
 # file where we save seen jobs
-SEEN_JOBS_FILE = "seen_jobs.json"
+SEEN_JOBS_FILE = os.path.join(os.path.dirname(__file__), "seen_jobs.json")
 
 def load_seen_jobs():
     if not os.path.exists(SEEN_JOBS_FILE):
